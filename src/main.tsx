@@ -1,6 +1,7 @@
 import "./index.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import Stats from "three/examples/jsm/libs/stats.module.js";
 
 const scene = new THREE.Scene();
 
@@ -30,6 +31,10 @@ const material = new THREE.MeshNormalMaterial({ wireframe: true });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
+const stats = new Stats();
+
+document.body.appendChild(stats.dom);
+
 function animate() {
   requestAnimationFrame(animate);
 
@@ -37,6 +42,7 @@ function animate() {
   // cube.rotation.y += 0.01;
 
   renderer.render(scene, camera);
+  stats.update();
 }
 
 animate();
